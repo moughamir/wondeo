@@ -1,0 +1,7 @@
+{
+  "apiUri": "https://api.vimeo.com",
+  "authUri": "/oauth/authorize/client",
+  "accessTokenUri": "/oauth/access_token",
+  "clientId": "71c5af65b32427516b692ed72f030fe47b246dc3",
+  "clientSecret": "abFPl5KTk0iPANyq+Cb1KtAjy7RR0udsGwW6pHRsykIMA/SCLcS1XDvNkYdja6e3AfBMhTxzw7YXilImyHMCR9bf2G49v0F2u1Gv6e+r0f078dgj4JImRau7dqh6GwnG"
+}
