@@ -54,9 +54,7 @@ function FullWidthGrid(props) {
           <Paper className={classes.paper}>xs=12</Paper>
         </Grid>
         <Grid item container spacing={8} justify="center">
-          <Grid item xs={12} sm={9}>
-            <postCard />
-          </Grid>
+          <postCard />
         </Grid>
       </Grid>
     </div>

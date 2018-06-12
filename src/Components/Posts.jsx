@@ -15,9 +15,11 @@ export default class Posts extends React.Component {
         });
       }
       return (
-        <Grid item xs={12} sm={9}>
-          {feedItems}
-        </Grid >
+        <Grid item container spacing={8} justify="center">
+          <Grid item xs={12} sm={4}>
+            {feedItems}
+          </Grid >
+        </Grid>
       );
   }
 }

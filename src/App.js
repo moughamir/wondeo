@@ -25,8 +25,8 @@ class App extends Component {
         direction: 'desc'
       }
     }).then(function (response) {
+      console.log(response.data.data)
       that.setState({
-
         posts: response.data.data
 
       });
@@ -49,7 +49,7 @@ class App extends Component {
             <h1 className="App-title">Welcome to React</h1>
           </header>
           <p className="App-intro">
-          <Posts posts={this.state.posts} />
+            <Posts posts={this.state.posts} />
           </p>
         </div>
       </React.Fragment>
