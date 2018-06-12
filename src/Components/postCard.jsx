@@ -10,9 +10,11 @@ import Typography from '@material-ui/core/Typography';
 import IconButton from "@material-ui/core/IconButton";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 import FavoriteIcon from '@material-ui/icons/Favorite';
-import ShareIcon from '@material-ui/icons/Share';
-//import TextTruncate from "react-text-truncate";
-//import renderHTML from 'react-render-html';
+import CommentIcon from '@material-ui/icons/Comment';
+import ReactPlayer from 'react-player'
+import TextTruncate from "react-text-truncate";
+import Divider from '@material-ui/core/Divider';
+import Chip from '@material-ui/core/Chip';
 
 
 export default class FeedItem extends React.Component {
@@ -24,8 +26,7 @@ export default class FeedItem extends React.Component {
   }
   playVideo(e) {
     e.preventDefault();
-    console.log(e.target)
-    this.setState({ playvideo: true })
+    this.setState({ playvideo: !this.state.playvideo })
   }
   render() {
     const post = this.props.post;
@@ -34,13 +35,18 @@ export default class FeedItem extends React.Component {
       maxWidth: '640px',
       height: '360px',
     };
-    let media
+    let media // <ReactPlayer url='https://www.youtube.com/watch?v=ysz5S6PUM-U' playing />
     if (this.state.playvideo) {
-      media = <CardMedia
-        style={embedStyle}
-        src={"https://player.vimeo.com" + post.uri + "?title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0&app_id=128453"}
+      media = <CardMedia style={embedStyle}><ReactPlayer
+        onClick={this.playVideo.bind(this)}
+
+        url={post.link}
         title={post.name}
-      />
+        width='100%'
+        height='100%'
+        playing
+        controls='false'
+      /></CardMedia>
     } else {
       media = <CardMedia
         onClick={this.playVideo.bind(this)}
@@ -70,17 +76,33 @@ export default class FeedItem extends React.Component {
         />
         {media}
         <CardContent>
-          <Typography component="p">
-            {post.description}
+          <Typography component="article">
+            <TextTruncate
+              line={2}
+              truncateText=" …"
+              text={post.description}
+            />
           </Typography>
+          <Divider light />
+          {post.categories.map((cat, i) => {
+            return (
+              <Chip
+                key={i}
+                label={cat.name}
+              />
+            );
+          })}
         </CardContent>
+        <Divider light />
         <CardActions disableActionSpacing>
           <IconButton aria-label="Add to favorites">
             <FavoriteIcon />
           </IconButton>
+          {post.metadata.connections.likes.total}
           <IconButton aria-label="Share">
-            <ShareIcon />
+            <CommentIcon />
           </IconButton>
+          {post.metadata.connections.comments.total}
         </CardActions>
       </Card>)
 
