@@ -6,6 +6,9 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
+import Paper from '@material-ui/core/Paper';
+import Grid from '@material-ui/core/Grid';
+
 import logo from './logo.svg';
 import Posts from './Components/Posts.jsx';
 import axios from 'axios';
@@ -60,14 +63,12 @@ class App extends Component {
     });
   }
 
-  componentWillMount() {
+  componentDidMount() {
     this.fetchFeed();
   }
 
   render() {
     return (
-      <React.Fragment>
-        <CssBaseline />
         <div style={styles.root}>
           <AppBar position="static">
             <Toolbar>
@@ -82,25 +83,14 @@ class App extends Component {
             </Toolbar>
           </AppBar>
           <section className="App-intro">
+         {
+           //<Sidebar/>//
+         }
             <Posts posts={this.state.posts} />
           </section>
         </div>
-
-      </React.Fragment>
     );
   }
 }
 
 export default App;
-
-/**
- * 
- * 
- * <div className="App">
-          <header className="App-header">
-            <img src={logo} className="App-logo" alt="logo" />
-            <h1 className="App-title">Welcome to React</h1>
-          </header>
-          
-        </div>
- */
