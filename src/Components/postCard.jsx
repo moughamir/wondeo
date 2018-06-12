@@ -58,7 +58,7 @@ export default class FeedItem extends React.Component {
     }
 
     return (
-      <Card>
+      <Card style={{ marginTop: 10, marginBottom: 10 }}>
         <CardHeader
           avatar={
             <Avatar

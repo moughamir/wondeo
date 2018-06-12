@@ -15,7 +15,7 @@ export default class Posts extends React.Component {
         });
       }
       return (
-          <Grid item xs={12} sm={4} md={4}>
+          <Grid  item xs={12} sm={12} md={6}>
             {feedItems}
           </Grid >
       );
