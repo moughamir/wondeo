@@ -36,19 +36,26 @@ const styles = {
 };
 
 export default class App extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       posts: [],
+      defaultDisplay: 10,
     };
   }
 
+  onUpdate = (val) => {
+    this.setState({
+      posts: val
+    })
+  };
   fetchFeed() {
     let self = this;
     axios.get('/categories/experimental/videos', {
       params: {
         page: 1,
-        per_page: 10,
+                name: 'defaultDisplay',
+        per_page: self.state.defaultDisplaye,
         sort: 'likes',
         direction: 'desc'
       }
@@ -75,7 +82,7 @@ export default class App extends Component {
   componentWillMount() {
     this.fetchFeed();
   }
-
+  
   render() {
     return (
       <div style={styles.root}>
@@ -92,7 +99,7 @@ export default class App extends Component {
           </Toolbar>
         </AppBar>
         <Grid container spacing={24} style={{ paddingTop: '25px' }}>
-          <SideBar />
+          <SideBar onUpdate={this.onUpdate} />
           <Grid container
             item
             alignItems='center'

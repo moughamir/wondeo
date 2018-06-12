@@ -9,30 +9,54 @@ import InputLabel from '@material-ui/core/InputLabel';
 import { Divider } from '@material-ui/core';
 
 export default class Sidebar extends React.Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
     this.state = {
       categories: [],
       category: '',
-      display: ['10', '25', '50', '100'],
+      display: ['1','10', '25', '50', '100'],
       defaultDisplay: '10',
       dir: ['asc', 'desc'],
       sort: ['likes']
     }
   }
 
+  update = (e) => {
+    console.log(e.target.value);
+    this.props.onUpdate(e.target.value);
+    this.setState({ fieldVal: e.target.value });
+  };
   handleChange = event => {
     this.setState({ [event.target.name]: event.target.value });
     this.fetchData(event.target.value)
+
   };
 
   handleDisplayChange = event => {
-    this.setState({[event.target.name]: event.target.value})
+    this.setState({ [event.target.name]: event.target.value })
+    this.getMore(event.target.value)
   }
-  
-  fetchData(target){
+  getMore(target) {
     let self = this;
-    
+    axios.get(self.state.category + '/videos', {
+      params: {
+        page: 1,
+        per_page: target,
+        sort: 'likes',
+        direction: 'desc'
+      }
+    }).then((response) => {
+      console.log(response.data.data)
+      self.setState({
+        posts: response.data.data
+      })
+      this.props.onUpdate(self.state.posts);
+    })
+  }
+
+  fetchData(target) {
+    let self = this;
+
     axios.get(target + '/videos', {
       params: {
         page: 1,
@@ -46,6 +70,7 @@ export default class Sidebar extends React.Component {
         posts: response.data.data
       })
     })
+    this.props.onUpdate(self.state.posts);
 
   }
 
@@ -81,7 +106,7 @@ export default class Sidebar extends React.Component {
       <Grid item xs={4}>
         <Paper style={{ height: '100vh' }}>
           <FormControl fullWidth>
-          <Divider />
+            <Divider />
             <InputLabel htmlFor="categories">Categories</InputLabel>
             <Select
               value={this.state.category}
@@ -94,9 +119,9 @@ export default class Sidebar extends React.Component {
               {categories}
             </Select>
           </FormControl>
-          
+
           <FormControl fullWidth>
-          <Divider />
+            <Divider />
             <InputLabel htmlFor="display">Display</InputLabel>
             <Select
               value={this.state.defaultDisplay}
