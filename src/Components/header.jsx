@@ -21,7 +21,7 @@ const style = {
     width: '150px',
     height: '150px',
     padding: '10px',
-    marginLeft: '-323px',
+   
     filter: 'drop-shadow(1px 1px 0 red) drop-shadow(-1px -1px 0 blue)'
   }
 }
