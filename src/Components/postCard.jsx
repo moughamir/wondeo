@@ -101,7 +101,7 @@ export default class FeedItem extends React.Component {
             <FavoriteIcon />
           </IconButton>
           {post.metadata.connections.likes.total}
-          <IconButton aria-label="Share">
+          <IconButton aria-label="Comment">
             <CommentIcon />
           </IconButton>
           {post.metadata.connections.comments.total}
