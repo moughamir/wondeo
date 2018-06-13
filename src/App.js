@@ -68,7 +68,7 @@ export default class App extends React.Component {
       params: {
         page: 1,
         name: 'defaultDisplay',
-        per_page: self.state.defaultDisplaye,
+        per_page: self.state.defaultDisplay,
         sort: 'likes',
         direction: 'desc'
       }

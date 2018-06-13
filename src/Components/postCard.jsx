@@ -52,7 +52,7 @@ export default class FeedItem extends React.Component {
       media = <CardMedia
         onClick={this.playVideo.bind(this)}
         style={embedStyle}
-        image={post.pictures.sizes[4].link}
+        image={post.pictures.sizes[4].link_with_play_button}
         title={post.name}
       />
     }
@@ -77,6 +77,7 @@ export default class FeedItem extends React.Component {
         />
         {media}
         <CardContent>
+          <h5>{post.name}</h5>
           <Typography component="article">
             <TextTruncate
               line={2}
