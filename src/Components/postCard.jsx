@@ -15,6 +15,7 @@ import ReactPlayer from 'react-player'
 import TextTruncate from "react-text-truncate";
 import Divider from '@material-ui/core/Divider';
 import Chip from '@material-ui/core/Chip';
+import moment from 'moment';
 
 
 export default class FeedItem extends React.Component {
@@ -57,7 +58,7 @@ export default class FeedItem extends React.Component {
     }
 
     return (
-      <Card>
+      <Card style={{ marginTop: 10, marginBottom: 10 }}>
         <CardHeader
           avatar={
             <Avatar
@@ -72,7 +73,7 @@ export default class FeedItem extends React.Component {
             </IconButton>
           }
           title={post.user.name}
-          subheader={post.release_time}
+          subheader={moment(post.release_time).format('lll')}
         />
         {media}
         <CardContent>
