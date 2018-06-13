@@ -1,0 +1,1 @@
+{"version":3,"sources":["index.css","app.css"],"names":[],"mappings":"AAAA,KACE,SACA,UACA,sBAAwB,CCF1B,KAAK,eAAiB","file":"static/css/main.3b96fdcc.css","sourcesContent":["body {\n  margin: 0;\n  padding: 0;\n  font-family: sans-serif;\n}\n\n\n\n// WEBPACK FOOTER //\n// ./src/index.css","\r\nbody{overflow: hidden;}\n\n\n// WEBPACK FOOTER //\n// ./src/app.css"],"sourceRoot":""}
