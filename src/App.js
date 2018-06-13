@@ -1,15 +1,21 @@
-import React, { Component } from 'react';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
-import IconButton from '@material-ui/core/IconButton';
+import React from 'react';
+import {
+  Paper,
+  AppBar,
+  Toolbar,
+  Typography,
+  Button,
+  IconButton,
+  Grid
+} from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
-import Grid from '@material-ui/core/Grid';
+
 import SideBar from './Components/Sidebar';
+import Posts from './Components/Posts';
+import Header from './Components/Header';
 import './app.css';
 import logo from './logo.svg';
-import Posts from './Components/Posts.jsx';
+
 import axios from 'axios';
 import config from './vimeoApiConfig.json'; // get vimeo api config.
 window.axios = axios;
@@ -35,18 +41,25 @@ const styles = {
   }
 };
 
-export default class App extends Component {
+export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       posts: [],
       defaultDisplay: 10,
+      categoryName: 'Experimental',
+      icon: 'https://i.vimeocdn.com/grab?s=https%3A%2F%2Ff.vimeocdn.com%2Fimages_v6%2Fcategories%2Firis_icon_experimental_64.png%3Fv%3D2&w=180&h=180&r=pad&f=png'
     };
   }
 
-  onUpdate = (val) => {
+  onUpdate = (val, c, i) => {
+    console.log(val)
+    console.log(c)
+    console.log(i)
     this.setState({
-      posts: val
+      posts: val,
+      categoryName: c,
+      icon: i
     })
   };
   fetchFeed() {
@@ -54,13 +67,13 @@ export default class App extends Component {
     axios.get('/categories/experimental/videos', {
       params: {
         page: 1,
-                name: 'defaultDisplay',
+        name: 'defaultDisplay',
         per_page: self.state.defaultDisplaye,
         sort: 'likes',
         direction: 'desc'
       }
     }).then(function (response) {
-      console.log(response.data.data)
+      //console.log(response.data.data)
       self.setState({
         posts: response.data.data
 
@@ -82,11 +95,12 @@ export default class App extends Component {
   componentWillMount() {
     this.fetchFeed();
   }
-  
+
   render() {
     return (
       <div style={styles.root}>
-        <AppBar position="static" style={{ marginBottom: '5px' }}>
+
+        <AppBar position="static" >
           <Toolbar>
             <IconButton style={styles.menuButton} color="inherit" aria-label="Menu">
               <MenuIcon />
@@ -95,11 +109,16 @@ export default class App extends Component {
             <Typography variant="title" color="inherit" style={styles.flex}>
               Wondeo
               </Typography>
-            <Button color="inherit">Proggile</Button>
+            <Button color="inherit">Login</Button>
           </Toolbar>
         </AppBar>
+
+        <Header category={this.state.categoryName} icon={this.state.icon} />
+
         <Grid container spacing={24} style={{ paddingTop: '25px' }}>
+
           <SideBar onUpdate={this.onUpdate} />
+
           <Grid container
             item
             alignItems='center'
@@ -111,6 +130,12 @@ export default class App extends Component {
               padding: '10px',
             }}>
             <Posts posts={this.state.posts} />
+            <Paper style={{
+              padding: '10px',
+              width: '100%'
+            }}>
+              END OF FILE -Pagination placeholder-
+            </Paper>
           </Grid>
         </Grid>
       </div>
