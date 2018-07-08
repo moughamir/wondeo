@@ -48,7 +48,12 @@ export default class App extends React.Component {
       posts: [],
       defaultDisplay: 10,
       categoryName: 'Experimental',
-      icon: 'https://i.vimeocdn.com/grab?s=https%3A%2F%2Ff.vimeocdn.com%2Fimages_v6%2Fcategories%2Firis_icon_experimental_64.png%3Fv%3D2&w=180&h=180&r=pad&f=png'
+      icon: 'https://i.vimeocdn.com/grab?s=https%3A%2F%2Ff.vimeocdn.com%2Fimages_v6%2Fcategories%2Firis_icon_experimental_64.png%3Fv%3D2&w=180&h=180&r=pad&f=png',
+      categories: [],
+      category: '',
+      display: [1, 10, 25, 50, 100],
+      dir: ['asc', 'desc'],
+      sort: ['likes']
     };
   }
 
