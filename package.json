@@ -1,6 +1,6 @@
 {
   "name": "wonder",
-  "version": "0.2.0",
+  "version": "0.2.0-canary.0",
   "private": true,
   "homepage": "https://moughamir.github.io/wondeo",
   "dependencies": {
