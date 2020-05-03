@@ -16,7 +16,7 @@
     "react-player": "^1.6.4",
     "react-render-html": "^0.6.0",
     "react-scripts": "1.1.4",
-    "react-text-truncate": "^0.13.1"
+    "react-text-truncate": "^0.16.0"
   },
   "scripts": {
     "start": "react-scripts start",
