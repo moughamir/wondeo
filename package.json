@@ -12,7 +12,7 @@
     "radium": "^0.24.0",
     "raven": "^2.6.2",
     "react": "^16.4.0",
-    "react-dom": "^16.4.0",
+    "react-dom": "^16.4.2",
     "react-player": "^1.6.4",
     "react-render-html": "^0.6.0",
     "react-scripts": "1.1.4",
